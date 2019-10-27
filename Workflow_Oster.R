@@ -58,17 +58,17 @@ plot(Oster_2011) # check layers of image
 ### extraction of spectral values for training dataset (classification purpose). So we
 ### need make some computations on this image, adding more layers.
 
-X <- coordinates(Oster2011) [, 1] # latitude coordinates
-Y <- coordinates(Oster2011) [, 2] # longtitude coordinates
-x_raster <- y_raster <- Oster2011[[1]]
+X <- coordinates(Oster_2011) [, 1] # latitude coordinates
+Y <- coordinates(Oster_2011) [, 2] # longtitude coordinates
+x_raster <- y_raster <- Oster_2011[[1]]
 x_raster[] <- X
 y_raster[] <- Y # thus two new layers with X and Y coordinates are created
 
 ### Spectral indices NDVI, IPVI and GRVI are based on spectral reflectance of actual
 ### satellite bands. So those can be created using simple computations:
-NDVI_raster <- (Oster2011[[5]] - Oster2011[[4]]) / (Oster2011[[5]] + Oster2011[[4]])
-IPVI_raster <- Oster2011[[5]] / (Oster2011[[5]] + Oster2011[[4]])
-GRVI_raster <- (Oster2011[[3]] - Oster2011[[4]]) / (Oster2011[[3]] + Oster2011[[4]])
+NDVI_raster <- (Oster_2011[[5]] - Oster_2011[[4]]) / (Oster_2011[[5]] + Oster_2011[[4]])
+IPVI_raster <- Oster_2011[[5]] / (Oster_2011[[5]] + Oster_2011[[4]])
+GRVI_raster <- (Oster_2011[[3]] - Oster_2011[[4]]) / (Oster_2011[[3]] + Oster_2011[[4]])
 
 Oster_2011 <- addLayer(x_raster, y_raster, Oster_2011, IPVI_raster, 
                        NDVI_raster, GRVI_raster) # 12 layers in 1 object!
